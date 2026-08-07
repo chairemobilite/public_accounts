@@ -10,7 +10,7 @@ export const getReportRows: RequestHandler = async (
     res: Response,
     next) => {
     try {
-        console.log('reached report part service')
+
         const {
             row_id,
             part_id,
@@ -52,7 +52,7 @@ export const upsertReportRows: RequestHandler = async (
     next
 ) => {
     try {
-        console.log('reached create report part router')
+
         const { rows } = req.body
         const data = await reportRowsService.UpsertReportRows(rows)
         const dataOut = addRowHelperColumns(data)

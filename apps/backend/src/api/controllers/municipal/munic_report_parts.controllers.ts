@@ -6,7 +6,6 @@ import { reportPartsService } from '../../services/municipal/municipal_report_pa
         res:Response,
         next)=>{
             try{
-                console.log('reached report part service')
                 const data = await reportPartsService.getReportParts()
                 res.status(200).json({success:true,data:data})
             }catch(err:any){
@@ -20,7 +19,7 @@ import { reportPartsService } from '../../services/municipal/municipal_report_pa
         next
     )=>{
         try{
-            console.log('reached create report part router')
+
             const {part_desc,part_page_def}=req.body
             const data =await reportPartsService.createReportPart(part_desc,part_page_def)
             res.status(200).json({success:true,data:data})
@@ -36,7 +35,7 @@ import { reportPartsService } from '../../services/municipal/municipal_report_pa
         next
     )=>{
         try{
-            console.log('reached delete report part router')
+
             const {part_id,}=req.validated?.params as {part_id:number}
             const data =await reportPartsService.deleteReportPart(part_id)
             res.status(200).json({success:true,data:data})
@@ -47,7 +46,7 @@ import { reportPartsService } from '../../services/municipal/municipal_report_pa
     }
     export const modifyReportPart:RequestHandler=async(req:Request,res:Response,next)=>{
         try{
-            console.log('reached modify report part router')
+
             const {part_id}=req.validated?.params as {part_id:number}
             const {part_desc,part_page_def}=req.validated?.body as {part_desc:string,part_page_def:string}
             const data = await reportPartsService.modifyReportPart(part_id,part_desc,part_page_def)

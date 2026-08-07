@@ -18,9 +18,6 @@ class MunicPartRepository{
             part_id
         )
         .returningAll()
-        console.log("→ SQL about to run")
-        console.log("SQL:", query.compile().sql)
-        console.log("PARAMS:", query.compile().parameters)
         const data = query.executeTakeFirst()
         return data
     }

@@ -11,7 +11,7 @@ import { rollUpChildValuesOnNull } from "../../../utils/rollupChildValuesOnNull"
 
 class ReportDataService {
     async getProvIds(year?:number,limit?:number,offset?:number,search_string?:string) {
-        console.log("→ getProvIds called")
+
 
         const {data,countOut} = await getProvIdQuery(db, year, limit,offset,search_string)
 

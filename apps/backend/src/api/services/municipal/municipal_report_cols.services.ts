@@ -25,7 +25,7 @@ class ReportColsService {
         col_id?: number | undefined,
         column_desc?: string | undefined
     }) {
-        console.log("→ getReportCols called")
+
 
         let query = db
             .selectFrom("municipal_qc.columns_table")
@@ -45,12 +45,9 @@ class ReportColsService {
         if (column_desc !== undefined) {
             query = query.where('column_desc', 'like', column_desc)
         }
-        console.log("→ SQL about to run")
-        console.log("SQL:", query.compile().sql)
-        console.log("PARAMS:", query.compile().parameters)
+
         const data = await query.execute()
         const wcols = addColHelperColumns(data)
-        console.log("→ result:", data)
 
         return wcols
     }
@@ -71,9 +68,7 @@ class ReportColsService {
                 .deleteFrom('municipal_qc.columns_table')
                 .where('col_id', "=", id)
                 .returningAll()
-            console.log("→ SQL about to run")
-            console.log("SQL:", deleteQuery.compile().sql)
-            console.log("PARAMS:", deleteQuery.compile().parameters)
+
             const deleteData = await deleteQuery.execute()
             const deletedPartId = deleteData[0]?.part_id
             if (!deletedPartId) {

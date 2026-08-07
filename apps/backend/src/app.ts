@@ -12,7 +12,7 @@ export const app = express();
 const frontendLoc = process.env.TRUSTED_FRONTEND
 console.log('🔒 TRUSTED_FRONTEND env var:', JSON.stringify(frontendLoc));
 app.use((req, res, next) => {
-  console.log('🌐 Incoming origin header:', req.headers.origin);
+  
   next();
 });
 app.use(cors(

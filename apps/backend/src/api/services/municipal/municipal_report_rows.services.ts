@@ -28,7 +28,6 @@ class ReportRowsService {
         col_id?: number | undefined,
         row_desc?: string | undefined
     }) {
-        console.log("→ getReportParts called")
 
         let query = db
             .selectFrom("municipal_qc.rows_table")
@@ -73,12 +72,9 @@ class ReportRowsService {
         if (row_desc !== undefined) {
             query = query.where('row_desc', 'like', row_desc)
         }
-        console.log("→ SQL about to run")
-        console.log("SQL:", query.compile().sql)
-        console.log("PARAMS:", query.compile().parameters)
+
         const data = await query.execute()
 
-        console.log("→ result:", data)
 
         return data
     }
@@ -96,9 +92,7 @@ class ReportRowsService {
                 .deleteFrom('municipal_qc.rows_table')
                 .where('row_id', "=", id)
                 .returningAll()
-            console.log("→ SQL about to run")
-            console.log("SQL:", deleteQuery.compile().sql)
-            console.log("PARAMS:", deleteQuery.compile().parameters)
+
             const deleteData = await deleteQuery.execute()
             const deletedPartId = deleteData[0]?.part_id
             if (!deletedPartId) {
@@ -244,15 +238,7 @@ class ReportRowsService {
                 
                 const arrayToUpsert = newArrayRightOrder.filter((r)=>r.edit_flag===true)
                 const finalArray = stripRowHelperColumns(arrayToUpsert)
-                console.table(convert)
-                console.table(newArrayRightOrder)
-                console.log('log for breakpoint')
-                //const otherItems = initialData.filter((r) => r.row_id !== row_id)
-                //const modItemToStrip = { ...itemToStrip, parent_id: new_parent_id, row_desc: row_desc, item_order: -1, edit_flag: true }
                 
-                //const oldArrayWHelp = addRowHelperColumns(otherItems)
-                //const insertedArray = newRowHelper(oldArrayWHelp, modItemToStrip)
-                //const colsToUpsert = stripRowHelperColumnsLev(insertedArray.filter((c) => c.edit_flag === true))
                 const finalData = await upsertReportRowsTransact(trx, finalArray)
                 return []
             }

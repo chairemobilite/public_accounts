@@ -20,7 +20,7 @@ class ReportMatchesService {
         year?: number | undefined,
         col_id?: number | undefined,
     }) {
-        console.log("→ getReportCols called")
+
 
         const data = await getMatchesQuery(db, { row_id: row_id, part_id: part_id, year: year, prov_rep_id: prov_rep_id, col_id: col_id })
 
@@ -29,7 +29,7 @@ class ReportMatchesService {
 
     async getGridMatchesQuery({ part_id,
         year }: { part_id: number, year: number }) {
-        console.log("→ getReportCols called")
+
 
         const data = await getGridMatchesQuery(db, { part_id: part_id, year: year })
         const dataWHelper = addRowSiblings(data) as unknown as FinStateSecAssignWSibs[]
@@ -44,7 +44,7 @@ class ReportMatchesService {
         year:number,
         prov_rep_id:string
     ){
-        console.log('Creating new match and returning associated grid')
+
         const data = await db.transaction().execute(async(trx)=>{
             const newItem=await createNewMatchQuery(part_id,row_id,col_id,year,prov_rep_id,trx)
             const data = await getGridMatchesQuery(trx, { part_id: newItem.part_id, year: newItem.year })
@@ -61,7 +61,7 @@ class ReportMatchesService {
         year:number,
         prov_rep_id:string
     ){
-        console.log('Creating new match')
+
         const newItem=await createNewMatchQuery(part_id,row_id,col_id,year,prov_rep_id,db)
         return newItem
     }
@@ -73,7 +73,6 @@ class ReportMatchesService {
         year:number,
         prov_rep_id:string
     ){
-        console.log('Updating match and returning associated grid')
         const data = await db.transaction().execute(async(trx)=>{
             const updatedItem=await UpdateMatchQuery(match_id,part_id,row_id,col_id,year,prov_rep_id,trx)
             const data = await getGridMatchesQuery(trx, { part_id: updatedItem.part_id, year: updatedItem.year })
@@ -91,7 +90,6 @@ class ReportMatchesService {
         year:number,
         prov_rep_id:string
     ){
-        console.log('Updating match and returning associated grid')
         const updatedItem=await UpdateMatchQuery(match_id,part_id,row_id,col_id,year,prov_rep_id,db)
 
         return updatedItem
@@ -102,7 +100,6 @@ class ReportMatchesService {
         year:number
     ){
 
-        console.log('Updating match and returning associated grid')
         const data = await db.transaction().execute(async(trx)=>{
             const deletItem=await deleteGridQueryRun(match_id,trx)
             const data = await getGridMatchesQuery(trx, { part_id: part_id, year: year })
@@ -116,7 +113,7 @@ class ReportMatchesService {
         match_id:number,
     ){
 
-        console.log('Updating match and returning associated grid')
+
         const deleteItem=await deleteGridQueryRun(match_id,db)
         return deleteItem
     }

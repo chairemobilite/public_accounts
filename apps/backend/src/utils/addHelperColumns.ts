@@ -7,7 +7,6 @@ export function addRowHelperColumns(cleanRows:FinStateSectionRow[]):FinStateSecR
     const inter1=addRowLevelEditFlagFields(cleanRows)
     const inter2=addRowSiblings(inter1)
     const addMoveFlag=addRowMoveFlagField(inter2)
-    //console.table(addMoveFlag)
     return addMoveFlag
 }
 
@@ -18,7 +17,6 @@ export function addColHelperColumns(cleanCols:FinStateSectionCol[]):FinStateSecC
     const inter1=addColLevelEditFlagFields(cleanCols)
     const inter2=addColSiblings(inter1)
     const addMoveFlag=addColMoveFlagField(inter2)
-    console.table(addMoveFlag)
     return addMoveFlag
 }
 

@@ -113,9 +113,6 @@ export const getEquationCalcPrecRepo = async (
         'm.prov_rep_id',
         sql<number>`COALESCE(d.value,0)::bigint`.as('value'),
     ]).orderBy(['mun.population desc','eq_var_id asc'])
-    console.log("→ SQL about to run")
-    console.log("SQL:", query.compile().sql)
-    console.log("PARAMS:", query.compile().parameters)
     const data = await query.execute()
     return data
 }

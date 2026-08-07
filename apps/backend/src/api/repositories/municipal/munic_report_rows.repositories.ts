@@ -32,9 +32,6 @@ export const upsertReportRowsTransact = async (
                 .returningAll()
 
 
-            console.log("→ SQL about to run")
-            console.log("SQL:", createQuery.compile().sql)
-            console.log("PARAMS:", createQuery.compile().parameters)
             createResults = await createQuery.execute()
         }
 
@@ -58,9 +55,6 @@ export const upsertReportRowsTransact = async (
             WHERE mq.row_id = v.row_id
             RETURNING mq.*;
         `
-            console.log("→ SQL about to run")
-            console.log("SQL:", updateQUery.compile(db).sql)
-            console.log("PARAMS:", updateQUery.compile(db).parameters)
             const { rows: updateResultsNew } = await updateQUery.execute(db)
             updateResults = updateResultsNew
 
@@ -128,8 +122,6 @@ export const buildRunGetRowQuery = async(
             if (row_desc !== undefined) {
                 query = query.where('row_desc', 'like', row_desc)
             }
-            console.log("→ SQL about to run")
-            console.log("SQL:", query.compile().sql)
-            console.log("PARAMS:", query.compile().parameters)
+
             const data = await query.execute()
 }

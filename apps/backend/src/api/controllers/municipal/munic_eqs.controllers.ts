@@ -6,7 +6,6 @@ export const getEquations: RequestHandler = async (
     res: Response,
     next) => {
     try {
-        console.log('reached report part service')
         const {
             eq_id,
         } = req.validated?.query as { eq_id: number}
@@ -21,7 +20,6 @@ export const getEquations: RequestHandler = async (
 
 export const getVariables:RequestHandler=async(req:Request,res:Response,next)=>{
     try{
-        console.log('reached report part service')
         const {
             eq_id,
         } = req.validated?.query as { eq_id: number}

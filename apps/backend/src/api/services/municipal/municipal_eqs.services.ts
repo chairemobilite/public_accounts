@@ -23,13 +23,11 @@ class MunicEqsService {
     }: {
         eq_id: number | undefined,
     }) {
-        console.log("→ getEquationsService called")
         const data = getEqsRepo(db,eq_id)
-        console.table(data)
         return data
     }
     async getVariablesService({eq_id,eq_var_id}:{eq_id?:number,eq_var_id?:number}){
-        console.log('getVariablesServiceCallesd')
+
         const data = getEqVariablesRepo(db,eq_id,eq_var_id)  
         return data
     }

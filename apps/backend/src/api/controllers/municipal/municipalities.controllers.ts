@@ -6,7 +6,7 @@ export const getMunicipality: RequestHandler = async (
     res: Response,
     next) => {
     try {
-        console.log('reached municipality route')
+
         const { year,
             cod_geo,
             region_type,
@@ -46,7 +46,7 @@ export const getRegions: RequestHandler = async (
     res: Response,
     next) => {
     try {
-        console.log('reached municipality route')
+
         const { reg_type, year } = req.query ?? {}
 
         const convertYear = year ? Number(year) : undefined

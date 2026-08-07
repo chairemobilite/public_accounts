@@ -10,7 +10,7 @@ class MunicipalitiesServices {
                             pop_st:number|undefined,
                             limit:number|undefined,
                             offset:number|undefined){
-        console.log('get Municipalities called')
+
         let limit_query = db
             .selectFrom('municipal_qc.municipalities').selectAll()
         let no_limit_query = db.selectFrom('municipal_qc.municipalities')
@@ -56,7 +56,7 @@ class MunicipalitiesServices {
     }
 
     async getRegions(region_type:'cm'|'reg'|'mrc',year:number){
-        console.log('getting regions')
+
         let query = db.selectFrom('municipal_qc.municipalities')
         let data
         if (region_type==='cm'){
@@ -91,7 +91,7 @@ class MunicipalitiesServices {
         
     }
     async createMunicipalities(munic:NewMunic){
-        console.log('createMuniciaplityCalled')
+
         const data = await db
                         .insertInto('municipal_qc.municipalities')
                         .values(munic)
@@ -100,7 +100,7 @@ class MunicipalitiesServices {
         return data
     }
     async updateMunicipalities(munic:MunicUpdate,munic_id:number){
-        console.log('Reached updateMunicipalities')
+ 
         const data = await db 
                             .updateTable('municipal_qc.municipalities')
                             .set(munic)
@@ -113,7 +113,7 @@ class MunicipalitiesServices {
         return data
     }
     async deleteMunicByYear(year:number){
-        console.log('reached delete muni by year')
+
         const data = await db
                             .deleteFrom('municipal_qc.municipalities')
                             .where('municipal_qc.municipalities.year','=',year)

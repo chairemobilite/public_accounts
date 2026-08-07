@@ -4,19 +4,15 @@ import { db } from "../../../db/db";
 import { municPartRepository } from "../../repositories/municipal/munic_report_parts.repositories";
 class ReportPartsService {
     async getReportParts() {
-        console.log("→ getReportParts called")
+
 
         const query = db
             .selectFrom("municipal_qc.report_parts")
             .selectAll()
             .orderBy(sql<number>`substring(${sql.ref('municipal_qc.report_parts.part_page_def')} from 2)::integer`)
 
-        console.log("→ SQL about to run")
-        console.log("SQL:", query.compile().sql)
-        console.log("PARAMS:", query.compile().parameters)
-        const data = await query.execute()
 
-        console.log("→ result:", data)
+        const data = await query.execute()
 
         return data
     }
@@ -28,12 +24,8 @@ class ReportPartsService {
                             part_desc:desc,
                             part_page_def:secName})
                         .returningAll()
-        console.log("→ SQL about to run")
-        console.log("SQL:", query.compile().sql)
-        console.log("PARAMS:", query.compile().parameters)
-        const data = await query.execute()
 
-        console.log("→ result:", data)
+        const data = await query.execute()
 
         return data
     }
@@ -43,12 +35,9 @@ class ReportPartsService {
                         .deleteFrom('municipal_qc.report_parts')
                         .where('municipal_qc.report_parts.part_id','=',part_id)
                         .returningAll()
-        console.log("→ SQL about to run")
-        console.log("SQL:", query.compile().sql)
-        console.log("PARAMS:", query.compile().parameters)
+
         const data = await query.execute()
 
-        console.log("→ result:", data)
 
         return data
     }

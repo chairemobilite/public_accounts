@@ -29,10 +29,6 @@ export const upsertReportColsTransact = async (
                 }))
                 .returningAll()
 
-
-            console.log("→ SQL about to run")
-            console.log("SQL:", createQuery.compile().sql)
-            console.log("PARAMS:", createQuery.compile().parameters)
             createResults = await createQuery.execute()
         }
 
@@ -55,9 +51,6 @@ export const upsertReportColsTransact = async (
                     WHERE mq.col_id = v.col_id
                     RETURNING mq.*;
                 `
-            console.log("→ SQL about to run")
-            console.log("SQL:", updateQUery.compile(db).sql)
-            console.log("PARAMS:", updateQUery.compile(db).parameters)
             const { rows: inter } = await updateQUery.execute(db)
             updateResults = inter
         }

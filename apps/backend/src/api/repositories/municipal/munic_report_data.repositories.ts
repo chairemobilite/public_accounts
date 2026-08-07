@@ -25,10 +25,6 @@ export const getProvIdQuery = async (
         query= query.limit(limit).offset(offset)
     }
 
-
-    console.log("→ SQL about to run")
-    console.log("SQL:", query.compile().sql)
-    console.log("PARAMS:", query.compile().parameters)
     const totalCount = await queryCount.executeTakeFirst() as {'count':number}
     const countOut = Number(totalCount.count)
     const data = await query.execute()
@@ -42,8 +38,7 @@ export async function getDataValGridRepo(
     part_id:number
 ){
     const query = addSortRows(addFiltersGrid(forGrid(getBaseQuery(getCte(db)),cod_geo),year,part_id))
-    console.log(query.compile().sql);
-    console.log(query.compile().parameters);
+
     const data = await query.execute()
     return data
 }

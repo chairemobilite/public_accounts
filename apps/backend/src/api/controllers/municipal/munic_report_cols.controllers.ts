@@ -8,7 +8,6 @@ export const getReportCols: RequestHandler = async (
     res: Response,
     next) => {
     try {
-        console.log('reached report part service')
         const {
             row_id,
             part_id,
@@ -39,7 +38,6 @@ export const upsertReportCols: RequestHandler = async (
     next
 ) => {
     try {
-        console.log('reached create report part router')
         const { cols } = req.validated?.body as { cols: FinStateSectionCol[] }
         const data = await reportColsService.UpsertReportCols(cols)
         res.status(200).json({ success: true, data: data })
