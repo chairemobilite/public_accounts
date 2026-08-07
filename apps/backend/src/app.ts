@@ -32,16 +32,5 @@ app.all('/api/auth/{*any}', toNodeHandler(auth));
 
 app.use(express.json({ limit: '10mb' }));
 
-app.get("/health", (_req, res) => {
-    res.json({ status: "ok" });
-});
-
-app.get("/debug/db", async (req, res) => {
-  const result = await db
-  .selectFrom(sql`(select 1 as ok)`.as("t"))
-  .selectAll()
-  .execute()
-  res.json(result)
-})
 
 app.use('/api',createApiRouter())
