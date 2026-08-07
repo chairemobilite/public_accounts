@@ -45,7 +45,7 @@ export const db = new Kysely<Database>({
     pool,
   }),
   log(event): void {
-    if (event.level === 'query') {
+    if (event.level === 'error') {
       console.log(event.query.sql)
       console.log(event.query.parameters)
     }
