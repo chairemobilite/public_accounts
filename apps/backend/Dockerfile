@@ -33,7 +33,6 @@ COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=prod-deps /app/package.json ./package.json
 COPY --from=build /app/apps/backend/dist ./apps/backend/dist
 COPY --from=build /app/apps/backend/package.json ./apps/backend/package.json
-COPY --from=build /app/packages/common ./packages/common # For types
 RUN mkdir -p /app/data/tmp && chown -R node:node /app/data
 USER node
 WORKDIR /app/apps/backend
